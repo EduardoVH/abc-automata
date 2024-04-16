@@ -5,14 +5,14 @@ import networkx as nx
 
 def validate_string():
     input_string = entry_string.get().lower()
-    if input_string.endswith('ac') or input_string.endswith('ab'):
+    if input_string.startswith('ac') or input_string.endswith('ab'):
         if set(input_string[:-2]).issubset({'a', 'b', 'c'}):
             result_label.config(text="Cadena válida", foreground='green')
             generate_diagram(input_string)
         else:
             result_label.config(text="La cadena solo debe contener las letras a, b y c", foreground='red')
     else:
-        result_label.config(text="La cadena debe terminar con 'ac' o 'ab'", foreground='red')
+        result_label.config(text="La cadena debe empezar con 'ac' o terminar con 'ab'", foreground='red')
 
 def generate_diagram(input_string):
     G = nx.DiGraph()
